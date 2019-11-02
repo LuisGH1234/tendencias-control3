@@ -1,6 +1,8 @@
 const mysql = require("mysql2");
 const Config = require("./config");
 const AWS_RDS = require("./rds-auth");
+const fs = require("fs");
+const { join } = require("path");
 
 // Create the connection pool. The pool-specific settings are the defaults
 const createConnection = () => {
@@ -17,7 +19,10 @@ const createConnection = () => {
         password: token, // "0B-e-a8969",
         database: Config.dbName, // "control3db",
         port: Config.dbPort,
-        ssl: "Amazon RDS",
+        // ssl: "Amazon RDS",
+        ssl: {
+            ca: fs.readFileSync(join(__dirname + "../../../certs/rds-ca-2015-root.pem")),
+        },
         authSwitchHandler: (data, cb) => {
             // modifies the authentication handler
             if (data.pluginName === "mysql_clear_password") {
