@@ -19,10 +19,10 @@ const createConnection = () => {
         password: token, // "0B-e-a8969",
         database: Config.dbName, // "control3db",
         port: Config.dbPort,
-        // ssl: "Amazon RDS",
-        ssl: {
-            ca: fs.readFileSync(join(__dirname + "../../../certs/rds-ca-2015-root.pem")),
-        },
+        ssl: "Amazon RDS",
+        // ssl: {
+        //     ca: fs.readFileSync(join(__dirname + "../../../certs/rds-ca-2015-root.pem")),
+        // },
         authSwitchHandler: (data, cb) => {
             // modifies the authentication handler
             if (data.pluginName === "mysql_clear_password") {
