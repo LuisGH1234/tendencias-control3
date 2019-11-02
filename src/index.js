@@ -37,10 +37,20 @@ app.post("/signin", async (req, res) => {
     return res.send({ token, status: "ok" });
 });
 
-app.use((req, res, next, err) => {
+/*app.use((req, res, next, err) => {
     const auth = req.get("authorization");
     console.log("auth", auth);
     next();
+});*/
+
+app.use(auth.verify);
+
+app.get("/me", (req, res) => {
+    if (req.user) return res.status(200).send({ data: req.user, status: "ok" });
+    return res
+        .status(401)
+        .send({ status: "Unauthorized" })
+        .end();
 });
 
 app.get("/pedidos", async (req, res) => {
