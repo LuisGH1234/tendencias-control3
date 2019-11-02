@@ -4,12 +4,14 @@ const Product = require("./entities/product.entity");
 const User = require("./entities/usuario.entity");
 const jwt = require("jsonwebtoken");
 const app = express();
+const cors = require("cors");
 
 const pwd = "$2b$10$/dJpU.tNWH47dZzgpi0e4e8L.rCSccRy/Bn4MIJpMKXHNrpySkpFS"; // felpa
 
 app.set("PORT", process.env.PORT || 3002);
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/signup", async (req, res) => {
     const { username, password } = req.body;
