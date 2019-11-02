@@ -12,7 +12,7 @@ const createConnection = () => {
         port: Config.dbPort,
         username: Config.dbUsername,
     });
-    // console.log("Token:", token);
+    console.log("Token:", token);
     return mysql.createConnection({
         host: Config.dbEndpoint,
         user: Config.dbUsername, // "admin",
