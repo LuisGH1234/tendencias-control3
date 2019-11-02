@@ -10,7 +10,7 @@ class Config {
 
     /** user */
     static get dbUsername() {
-        return "backendUser"; // admin
+        return "backendUser2"; // "backendUser"; // admin
     }
 
     /** database */
